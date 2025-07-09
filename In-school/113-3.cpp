@@ -12,5 +12,4 @@ int main(){
     cout << cnt << endl;
 
     return 0;
-    //666
 }
