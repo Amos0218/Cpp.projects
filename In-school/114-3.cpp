@@ -5,10 +5,6 @@
 using namespace std;
 
 
-bool isWords(char c) {
-    return isalpha(c);
-}
-
 void reverseWords (string &s,int start, int end){
     int l = start,r = end-1;
     while (l<r){
@@ -34,16 +30,16 @@ int main(){
     int i =0;
 
     while(i < n){
-        if(isWords(s[i])){
+        if(isalpha(s[i])){
             int start = i;
-            while(i <n && isWords(s[i]) ){
+            while(i <n && isalpha(s[i]) ){
                 i += 1;
             }
             int end = i;
             reverseWords(s,start,end);
             words_count += 1;
         } else{
-            i += 1;
+            i += 1; // keep search
         }
     }
     cout << s << endl;
