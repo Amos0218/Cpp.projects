@@ -54,6 +54,7 @@ int main(){
             repeat += count[i] - 1;
         }
     }
+    cout << endl;
     cout << repeat << endl;
 
     if(correct_count == n){

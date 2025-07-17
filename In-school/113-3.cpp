@@ -2,9 +2,9 @@
 using namespace std;
 
 int main(){
-    int a,b,cnt = 0;
+    long long int a,b,cnt = 0;
     cin >> a >> b;
-    for(int i=a; i<b+1; ++i){
+    for(long long int i=a; i<b+1; ++i){
         if (i % 11 == 0 || i == 0){
             cnt += 1;
         }
