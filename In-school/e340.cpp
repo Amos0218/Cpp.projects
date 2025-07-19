@@ -12,8 +12,9 @@ int main(){
     for(int i=0; i <n; ++i){
          cin >> b[i];
     }
-    a[0] = b[0];
-    for(int i=1; i <n; ++i){
+    
+    a[0] = b[0]; //初始第一項
+    for(int i=1; i <n; ++i){  //從第二個（索引一）開始
          a[i] = b[i] - b[i-1];
     }
     for(int i=0; i <n; ++i){

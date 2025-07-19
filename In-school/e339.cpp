@@ -1,9 +1,11 @@
+//前綴和
+
 #include <iostream>
 #include <vector>
 using namespace std;
 
 int main(){
-    int n;
+    long long int n;
     cin >> n;
     vector<int> a(n);
     vector<int> b(n);
@@ -11,8 +13,8 @@ int main(){
         cin >> a[i];
     }
 
-    b[0] = a[0];
-    for(int i=1; i <n; ++i){
+    b[0] = a[0];  //初始第一項
+    for(int i=1; i <n; ++i){   //從第二個（索引一）開始
         b[i] = b[i-1] + a[i];
     }
 

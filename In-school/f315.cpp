@@ -26,7 +26,6 @@ long long int sol(vector<int> &arr,vector<int> &checked,int lb, int rb){
         }else{ //是大數字
             large[large_index] = arr[i];
             large_index += 1;
-            cnt += 1;
             // 如果大數字還沒被算過,cnt += 1
             if (checked[arr[i]] == 0){
                 cnt += 1;
@@ -40,6 +39,7 @@ long long int sol(vector<int> &arr,vector<int> &checked,int lb, int rb){
 
     ans += sol(small,checked,lb,mid); //呼叫小數字陣列得到的答案
     ans += sol(large,checked,mid+1,rb); //呼叫大數字陣列得到的答案
+
     return ans;
 }
 
