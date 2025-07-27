@@ -1,66 +1,49 @@
 #include <iostream>
 #include <string>
-#include <vector>
-#include <cctype>
 using namespace std;
 
+int pos[100000] = {};
 int main(){
-    string originalWord;
-    cin >> originalWord;
 
-    string lowerWord = originalWord;
-    for (char &c : lowerWord) {
-        c = tolower(c);  
+    string str;
+    cin >> str;
+    int len = str.length();
+    int flag = 0; //判斷現在是當前單字的第幾個
+    int index = 1; //現在是字串的第幾個字
+    int group = 0; //有幾組答案
+
+    for(int i=0; i <len; ++i){// 
+        if (flag == 0 && (str[i] == 'T' || str[i] == 't')){
+            flag = 1;
+            pos[index] = i+1;
+            index += 1;
+        }else if (flag == 1 && (str[i] == 'Y' || str[i] == 'y')){
+            flag = 2;
+            pos[index] = i+1;
+            index += 1;
+        }else if (flag == 2 && (str[i] == 'S' || str[i] == 's')){
+            flag = 3;
+            pos[index] = i+1;
+            index += 1;
+        }else if (flag == 3 && (str[i] == 'H' || str[i] == 'h')){
+            flag = 0;
+            pos[index] = i+1;
+            index += 1;
+            group += 1;
+        }
+            
     }
-
-    int n = originalWord.length();
-    vector<bool> used(n, false);
-    vector<vector<int>> result;
-
-    for(int i=0; i < n; ++i){
-        if (lowerWord[i] == 't' && !used[i]){
-            char target[4] = {'t','y','s','h'};
-            vector<int> candidate;
-            candidate.push_back(i);
-            int current = i;
-
-            bool valid = true;
-
-            for(int k =1; k < 4; ++k){
-                bool found = false;
-                for(int j = current + 1; j< n; ++j){
-                    if (lowerWord[j] == target[k] && !used[j]){
-                        candidate.push_back(j);
-                        current = j;
-                        found = true;
-                        break;
-                    }
-                }
-                if (!found){
-                    valid = false;
-                    break;
-                }
-            }
-
-            if (valid){
-                vector<int> currentgroup;
-                for(int idx : candidate){
-                    currentgroup.push_back(idx + 1); // 輸出時是我們生活中的第幾個
-                    used[idx] = true; // 標記原始位置
-                }
-                result.push_back(currentgroup);
+        index -= 1; //把index減回來（因為每次判斷完都會加一）
+        index -= index % 4; //把多餘的（還不完整的）扣掉
+        
+        cout << group << endl;
+        for(int i=0; i <=index; ++i){
+            if(i%4 == 0){
+                cout << pos[i] << endl;
+            }else{
+                cout << pos[i] << " ";
             }
         }
-    }
-
-    // output
-    cout << result.size() << endl;
-    for(int i = 0; i < result.size(); ++i){
-        for(int j = 0; j < result[i].size(); ++j){
-            cout << result[i][j] << " ";
-        }
-        cout << endl;
-    }
 
     return 0;
 }
