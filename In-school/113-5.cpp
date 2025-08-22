@@ -35,9 +35,9 @@ int main(){
     }
         index -= 1; //把index減回來（因為每次判斷完都會加一）
         index -= index % 4; //把多餘的（還不完整的）扣掉
-        
+
         cout << group << endl;
-        for(int i=0; i <=index; ++i){
+        for(int i=0; i <= index; ++i){
             if(i%4 == 0){
                 cout << pos[i] << endl;
             }else{
